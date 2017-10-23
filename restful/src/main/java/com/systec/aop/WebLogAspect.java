@@ -9,6 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.*;
 import java.util.Arrays;
 
 /**
@@ -42,5 +43,30 @@ public class WebLogAspect {
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void deAfterReturning(Object ret){
         logger.info("======================RESPONSE : " + ret);
+        try {
+            String username = "root";
+            String password = "systec";
+            String url = "jdbc:mysql://localhost:3306/demo_test";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement statement = conn.prepareStatement("select * from tb_hotel");
+            ResultSet rs = statement.executeQuery();
+            int col = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                for (int i = 1; i <= col; i++) {
+                    System.out.print(rs.getString(i) + "\t");
+                    if ((i == 2) && (rs.getString(i).length() < 8)) {
+                        System.out.print("\t");
+                    }
+                }
+                System.out.println("");
+            }
+            statement.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

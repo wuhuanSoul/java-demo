@@ -19,7 +19,7 @@ public class GeneratorMain {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //读取配置文件
-        File configFile = new File("src/main/resources/generatorConfig.xml");
+        File configFile = new File("D:\\workspace\\all-demo\\restful\\target\\classes\\resources\\generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config;
         try {

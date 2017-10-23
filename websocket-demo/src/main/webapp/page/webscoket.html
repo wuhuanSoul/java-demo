@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    if ("WebSocket" in window) {
+        console.log("浏览器支持WebSocket");
+        var wb = new WebSocket("ws://127.0.0.1:8090");
+        wb.onopen = function () {
+            console.log("连接成功");
+        };
+        wb.onmessage = function (evt) {
+            var received_msg = evt.data;
+            console.log("数据已接收..." + received_msg);
+        };
+        wb.onclose = function () {
+            // 关闭 websocket
+            console.log("连接已关闭...");
+        }
+        wb.onerror = function () {
+            console.log("连接异常，请重试");
+        }
+    } else {
+        // 浏览器不支持 WebSocket
+        console.log("您的浏览器不支持 WebSocket!");
+    }
+    function send(message) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (wb.readyState == WebSocket.OPEN) {
+            wb.send(message);
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+
+</script>
+<body>
+<div>
+    <form onsubmit="return false;">
+        <a href="#">webSocket</a><br/>
+        <input type="text" name="message" style="width: 300px" value="推送消息内容"><br/>
+        <input type="button" value="发送消息" onclick="send(this.form.message.value)"><br/>
+        <input type="button" onclick="closeWebSocket()" value="关闭">
+    </form>
+</div>
+</body>
+</html>

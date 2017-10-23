@@ -7,7 +7,11 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/demo-main" />
+    <file type="web" url="file://$PROJECT_DIR$/mail-demo" />
     <file type="web" url="file://$PROJECT_DIR$/restful" />
+    <file type="web" url="file://$PROJECT_DIR$/ssh-demo" />
+    <file type="web" url="file://$PROJECT_DIR$/websocket-demo" />
+    <file type="web" url="file://$PROJECT_DIR$/wechat-demo" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -15,11 +19,13 @@
         <option value="$PROJECT_DIR$/restful/pom.xml" />
         <option value="$PROJECT_DIR$/demo-main/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/websocket-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/webscoket-chatroom/pom.xml" />
+        <option value="$PROJECT_DIR$/mail-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/wechat-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/ssh-demo/pom.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" project-jdk-name="jdk1.8.0_111" project-jdk-type="JavaSDK" />
-  <component name="SvnConfiguration" myUseAcceleration="nothing">
-    <configuration useDefault="false">D:\Users\wh\AppData\Roaming\Subversion</configuration>
-  </component>
 </project>

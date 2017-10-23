@@ -8,12 +8,50 @@
   <name>demo-main Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
+    <dependency>
+      <groupId>org.apache.axis</groupId>
+      <artifactId>axis</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.9.2</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <version>RELEASE</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/net.sf.jacob-project/jacob -->
+    <dependency>
+      <groupId>net.sf.jacob-project</groupId>
+      <artifactId>jacob</artifactId>
+      <version>1.14.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jdbc</artifactId>
+      <version>8.5.15</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>demo-main</finalName>

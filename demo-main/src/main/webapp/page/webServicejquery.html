@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+    <input type="button" id="mybutton" value="请求webservice">
+
+</body>
+<script>
+    $(function(){
+        $("#mybutton").click(function(){
+            var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://server.web.cxf.rl.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+                +'<soapenv:Body>'
+                +'<q0:sayHello>'
+                +'   <arg0>sss</arg0>'
+                +' </q0:sayHello>'
+                +'</soapenv:Body>'
+                +'</soapenv:Envelope>';
+
+            $.ajax({
+                url:'http://192.168.22.193:456/helloWord?wsdl',
+                type:'post',
+                dataType:'json',
+                contentType:'text/xml',
+                data:data,
+                success:function(responseText){
+                    alert($(responseText).find('return').text());
+                },
+                error:function(){
+                    alert("error");
+                }
+            })
+        })
+    })
+
+</script>
+</html>

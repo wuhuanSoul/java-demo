@@ -1,0 +1,63 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="UTF-8">  
+<title>通过Ajax调用webService服务</title>  
+</head>  
+<script>  
+    /* ActiveXObject有浏览器兼容问题 */  
+	var xhr;
+   if (window.XMLHttpRequest)
+  {// code for all new browsers
+  xhr=new XMLHttpRequest();
+  }
+else if (window.ActiveXObject)
+  {// code for IE5 and IE6
+  xhr=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+    
+    function sendMsg(){  
+        var name = document.getElementById("name").value;  
+          
+        //服务地址  
+     // var wsUrl = "http://ws.webxml.com.cn/WebServices/WeatherWS.asmx?wsdl";  
+		var wsUrl = "http://192.168.22.193:456/helloWord?wsdl";
+        //请求体  
+        var soap = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://service.webservice.wang.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'  
+                + '<soapenv:Body><q0:sayHello><arg0>'+ name +'</arg0></q0:sayHello></soapenv:Body></soapenv:Envelope>';  
+  
+        //打开连接  
+        xhr.open('POST', wsUrl, true);  
+  
+        //重新设置请求头  
+        xhr.setRequestHeader("Content-Type", "text/xml;charset=UTF-8");  
+		xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  
+        //设置回调函数  
+        xhr.onreadystatechange = _back;  
+  
+        //发送请求  
+        xhr.send(soap);  
+    }  
+      
+    function _back(){  
+          
+        if(xhr.readyState == 4){  
+          
+            if( xhr.status == 200 ){  
+                /* 有浏览器兼容问题 */  
+                var ret = xhr.responseXML;  
+                var msg = ret.getElementsByTagName('return')[0];  
+                alert(msg);  
+                  
+            }  
+        }  
+    }  
+      
+</script>  
+  
+<body>  
+    <input type="button" value="发送soap请求" onclick="sendMsg()"  />  
+    <input  type="text" id="name"/>  
+</body>  
+</html>  

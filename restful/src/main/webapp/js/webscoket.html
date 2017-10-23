@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<script>
+    if ("WebSocket" in window) {
+        console.log("浏览器支持WebSocket");
+        var wb = new WebSocket("ws://localhost:8080/webSocket");
+//        if(wb.readyState == WebSocket.CONNECTING){
+            //   " + document.location.host + "
+//            wb = new SockJS("http://localhost:8080/sockjs/webSocketServer");
+//        }
+        wb.onopen = function () {
+            console.log("连接成功");
+        };
+        wb.onmessage = function (evt) {
+            var received_msg = evt.data;
+            console.log("数据已接收..." + received_msg);
+        };
+        wb.onclose = function () {
+            // 关闭 websocket
+            console.log("连接已关闭...");
+        }
+        wb.onerror = function () {
+            console.log("连接异常，请重试");
+        }
+    } else {
+        // 浏览器不支持 WebSocket
+        console.log("您的浏览器不支持 WebSocket!");
+    }
+    function send(message) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (wb.readyState == WebSocket.OPEN) {
+            wb.send(message);
+        } else{
+            alert("连接没有开启.");
+        }
+    }
+
+    function closeWebSocket() {
+        if (wb.readyState == WebSocket.OPEN) {
+            wb.close();
+        }
+    }
+    function getHelloWorld() {
+        $.ajax({
+            url:"http://localhost:8080/greeting",
+            type:'get',
+            dataType:'JSONP',
+            success : function(json){
+                console.log(json.parseJSON().content);
+            }
+        });
+    }
+
+</script>
+<body>
+<div>
+    <form onsubmit="return false;">
+        <a href="#">webSocket</a><br/>
+        <input type="text" name="message" style="width: 300px" value="推送消息内容"><br/>
+        <input type="button" value="发送消息" onclick="send(this.form.message.value)"><br/>
+        <input type="button" onclick="closeWebSocket()" value="关闭">
+        <a href="#" onclick="getHelloWorld()">获取HelloWorld</a><br/>
+        <h2 name="content"></h2>
+    </form>
+</div>
+</body>
+</html>

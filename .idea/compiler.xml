@@ -7,14 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo-main" />
+        <module name="demo.websocket.chart" />
+        <module name="mail-demo" />
         <module name="mybatis-demo" />
         <module name="restful" />
+        <module name="ssh-demo" />
+        <module name="websocket-demo" />
+        <module name="wechat-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo-main" target="1.5" />
+      <module name="demo.websocket.chart" target="1.8" />
+      <module name="mail-demo" target="1.5" />
       <module name="mybatis-demo" target="1.5" />
       <module name="restful" target="1.6" />
+      <module name="ssh-demo" target="1.5" />
+      <module name="websocket-demo" target="1.5" />
+      <module name="wechat-demo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

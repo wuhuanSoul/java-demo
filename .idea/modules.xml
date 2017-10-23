@@ -3,8 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/demo-main/demo-main.iml" filepath="$PROJECT_DIR$/demo-main/demo-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webscoket-chatroom/demo.websocket.chart.iml" filepath="$PROJECT_DIR$/webscoket-chatroom/demo.websocket.chart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mail-demo/mail-demo.iml" filepath="$PROJECT_DIR$/mail-demo/mail-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-demo/mybatis-demo.iml" filepath="$PROJECT_DIR$/mybatis-demo/mybatis-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/restful/restful.iml" filepath="$PROJECT_DIR$/restful/restful.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssh-demo/ssh-demo.iml" filepath="$PROJECT_DIR$/ssh-demo/ssh-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/websocket-demo/websocket-demo.iml" filepath="$PROJECT_DIR$/websocket-demo/websocket-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-demo/wechat-demo.iml" filepath="$PROJECT_DIR$/wechat-demo/wechat-demo.iml" />
     </modules>
   </component>
 </project>

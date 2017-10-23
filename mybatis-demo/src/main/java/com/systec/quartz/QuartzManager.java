@@ -49,6 +49,8 @@ public class QuartzManager {
         JobDetailImpl jobDetail = new JobDetailImpl(taskName, taskGroupName, T);
         CronTriggerImpl trigger = new CronTriggerImpl(triggerName, triggerGroupName);
         trigger.setCronExpression(time);
+//        Date now = new Date(System.currentTimeMillis() + 60*1000);
+//        trigger.setStartTime(now);
         scheduler.scheduleJob(jobDetail, trigger);
     }
 

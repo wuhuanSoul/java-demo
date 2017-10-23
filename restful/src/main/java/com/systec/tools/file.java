@@ -61,7 +61,7 @@ public class file {
         try {
             BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file));
             response.reset();
-            response.setContentType("bin");
+            response.setContentType("multipart/form-data");
             response.addHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
             OutputStream outputStream = response.getOutputStream();
             byte[] b = new byte[100];
@@ -69,6 +69,8 @@ public class file {
             while ((len = inputStream.read(b)) > 0) {
                 outputStream.write(b, 0, len);
             }
+            inputStream.close();
+            outputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
