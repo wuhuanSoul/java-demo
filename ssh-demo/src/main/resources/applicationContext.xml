@@ -12,8 +12,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
-    <context:property-placeholder location="classpath:database.properties"></context:property-placeholder>
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <context:property-placeholder location="classpath:*.properties"></context:property-placeholder>
+    <bean id="dataSourceOne" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${database.driver}"></property>
         <property name="url" value="${database.url}"></property>
         <property name="username" value="${database.user}"></property>
@@ -27,7 +27,7 @@
         <property name="testOnReturn" value="true"></property>
         <property name="testWhileIdle" value="true"></property>
     </bean>
-    <context:property-placeholder location="classpath:databaseTwo.properties"></context:property-placeholder>
+
     <bean id="dataSourceTwo" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${databaseTwo.driver}"></property>
         <property name="url" value="${databaseTwo.url}"></property>
@@ -45,16 +45,15 @@
 
     <context:component-scan base-package="cn.com.systec.dao"></context:component-scan>
     <context:component-scan base-package="cn.com.systec.service"></context:component-scan>
-    <context:component-scan base-package="cn.com.systec.serviceTwo"></context:component-scan>
 
     <bean id="dynamicDataSource" class="cn.com.systec.datasource.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
-                <entry value-ref="dataSource" key="dataSource"></entry>
+                <entry value-ref="dataSourceOne" key="dataSourceOne"></entry>
                 <entry value-ref="dataSourceTwo" key="dataSourceTwo"></entry>
             </map>
         </property>
-        <property name="defaultTargetDataSource" ref="dataSource"></property>
+        <property name="defaultTargetDataSource" ref="dataSourceOne"></property>
     </bean>
 
     <!-- 定义Hibernate的SessionFactory -->
@@ -95,10 +94,21 @@
 
     <!-- 通过切点表达式定义需进行事务增强切面的目标方法 -->
     <aop:config>
-        <aop:pointcut expression="execution(* cn.com.systec.service.*Service.*(..))" id="serviceMethod"/>
-        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
-        <aop:pointcut expression="execution(* cn.com.systec.serviceTwo.*Service.*(..))" id="serviceMethodTwo"/>
-        <aop:advisor pointcut-ref="serviceMethodTwo" advice-ref="txAdvice"/>
+            <aop:pointcut expression="execution(* cn.com.systec.service..*.*(..))" id="serviceMethod"/>
+            <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" order="2"/>
+    </aop:config>
+    <bean id="dataSourceInterceptor" class="cn.com.systec.datasource.DataSourceInterceptor"></bean>
+    <aop:config>
+        <aop:aspect id="serviceOneAspect" ref="dataSourceInterceptor" order="1">
+            <aop:pointcut expression="execution(* cn.com.systec.service.*.*(..))" id="serviceOne"/>
+            <aop:before pointcut-ref="serviceOne" method="setDataSourceOne"></aop:before>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:aspect id="serviceTwoAspect" ref="dataSourceInterceptor" order="1">
+            <aop:pointcut expression="execution(* cn.com.systec.service.serviceTwo.*.*(..))" id="serviceTwo"/>
+            <aop:before pointcut-ref="serviceTwo" method="setDataSourceTwo"></aop:before>
+        </aop:aspect>
     </aop:config>
 
 

@@ -2,7 +2,7 @@ package cn.com.systec.control;
 
 import cn.com.systec.core.Response;
 import cn.com.systec.domain.Hotel;
-import cn.com.systec.service.HotelService;
+import cn.com.systec.service.serviceTwo.UserService;
 import cn.com.systec.utility.ModelAnnotation;
 import cn.com.systec.utility.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by wh on 10/23/2017.
  */
-@RequestMapping("/hotel")
+@RequestMapping("/user")
 @Controller
-@ModelAnnotation(description = "hotel message")
-public class HotelController {
+@ModelAnnotation(description = "user message")
+public class UserController {
 
     @Autowired
-    private HotelService hotelService;
-
-    @RequestMapping(value = "add",method = RequestMethod.POST)
-    public String addHotel(@RequestBody Hotel hotel){
-        hotelService.addHotel(hotel);
-        return "添加成功";
-    }
+    private UserService userService;
 
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public @ResponseBody Response findAllHotel(){
-        Page page= hotelService.findAllHotel();
+    public @ResponseBody
+    Response findAllHotel(){
+        Page page= userService.findAllUser();
         return new Response().success(page);
     }
 }
