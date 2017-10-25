@@ -121,25 +121,25 @@ public class User extends BaseDomain {
 	@Column(name = "is_adGroup_user") 
 	private Integer is_adGroup_user;
 
-	/**
-
-	 * 签到状态
-     */
-	@Transient
-	private Integer signStatus;
-
-
-	/**
-	 * 签到时间
-     */
-	@Transient
-	private Date signDate;
-	
-	/**
-	 * 我的联系人分组
-     */
-	@Transient
-	private Integer mycontactgrop;
+//	/**
+//
+//	 * 签到状态
+//     */
+//	@Transient
+//	private Integer signStatus;
+//
+//
+//	/**
+//	 * 签到时间
+//     */
+//	@Transient
+//	private Date signDate;
+//
+//	/**
+//	 * 我的联系人分组
+//     */
+//	@Transient
+//	private Integer mycontactgrop;
 
 	/**
 	 * NAME全拼
@@ -301,21 +301,21 @@ public class User extends BaseDomain {
 		this.sort = sort;
 	}
 
-	public Integer getSignStatus() {
-		return signStatus;
-	}
-
-	public void setSignStatus(int signStatus) {
-		this.signStatus = signStatus;
-	}
-
-	public Date getSignDate() {
-		return signDate;
-	}
-
-	public void setSignDate(Date signDate) {
-		this.signDate = signDate;
-	}
+//	public Integer getSignStatus() {
+//		return signStatus;
+//	}
+//
+//	public void setSignStatus(int signStatus) {
+//		this.signStatus = signStatus;
+//	}
+//
+//	public Date getSignDate() {
+//		return signDate;
+//	}
+//
+//	public void setSignDate(Date signDate) {
+//		this.signDate = signDate;
+//	}
 
 	public String getNamePinying() {
 		return namePinying;
@@ -341,13 +341,13 @@ public class User extends BaseDomain {
 		this.is_mycontact = is_mycontact;
 	}
 
-	public Integer getMycontactgrop() {
-		return mycontactgrop;
-	}
-
-	public void setMycontactgrop(Integer mycontactgrop) {
-		this.mycontactgrop = mycontactgrop;
-	}
+//	public Integer getMycontactgrop() {
+//		return mycontactgrop;
+//	}
+//
+//	public void setMycontactgrop(Integer mycontactgrop) {
+//		this.mycontactgrop = mycontactgrop;
+//	}
 
 	public String getUserId() {
 		return userId;
@@ -365,19 +365,44 @@ public class User extends BaseDomain {
 		this.cuId = cuId;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", account=" + account + ", password="
+//				+ password + ", orgId=" + orgId + ", roleId=" + roleId
+//				+ ", name=" + name + ", phone=" + phone + ", email=" + email
+//				+ ", position=" + position + ", isEnable=" + isEnable
+//				+ ", description=" + description + ", gender=" + gender
+//				+ ", whenChanged=" + whenChanged + ", uSNCreated=" + uSNCreated
+//				+ ", isDelete=" + isDelete + ", sort=" + sort + "]";
+//	}
+
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", account=" + account + ", password="
-				+ password + ", orgId=" + orgId + ", roleId=" + roleId
-				+ ", name=" + name + ", phone=" + phone + ", email=" + email
-				+ ", position=" + position + ", isEnable=" + isEnable
-				+ ", description=" + description + ", gender=" + gender
-				+ ", whenChanged=" + whenChanged + ", uSNCreated=" + uSNCreated
-				+ ", isDelete=" + isDelete + ", sort=" + sort + "]";
+		return "User{" +
+				"id=" + id +
+				", account='" + account + '\'' +
+				", password='" + password + '\'' +
+				", orgId=" + orgId +
+				", roleId=" + roleId +
+				", name='" + name + '\'' +
+				", isInternalNum=" + isInternalNum +
+				", phone='" + phone + '\'' +
+				", email='" + email + '\'' +
+				", position='" + position + '\'' +
+				", isEnable=" + isEnable +
+				", description='" + description + '\'' +
+				", gender=" + gender +
+				", whenChanged='" + whenChanged + '\'' +
+				", uSNCreated='" + uSNCreated + '\'' +
+				", isDelete=" + isDelete +
+				", sort=" + sort +
+				", max_attend=" + max_attend +
+				", is_mycontact=" + is_mycontact +
+				", is_adGroup_user=" + is_adGroup_user +
+				", namePinying='" + namePinying + '\'' +
+				", userId='" + userId + '\'' +
+				", cuId='" + cuId + '\'' +
+				'}';
 	}
-
-	
-
-	
-	
 }

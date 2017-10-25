@@ -2,6 +2,7 @@ package cn.com.systec.control;
 
 import cn.com.systec.core.Response;
 import cn.com.systec.domain.Hotel;
+import cn.com.systec.service.HotelService;
 import cn.com.systec.service.serviceTwo.UserService;
 import cn.com.systec.utility.ModelAnnotation;
 import cn.com.systec.utility.Page;
@@ -23,9 +24,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private HotelService hotelService;
+
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public @ResponseBody
-    Response findAllHotel(){
+    public @ResponseBody Response findAllUser(){
         Page page= userService.findAllUser();
         return new Response().success(page);
     }

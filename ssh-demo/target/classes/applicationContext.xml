@@ -45,6 +45,7 @@
 
     <context:component-scan base-package="cn.com.systec.dao"></context:component-scan>
     <context:component-scan base-package="cn.com.systec.service"></context:component-scan>
+    <context:component-scan base-package="cn.com.systec.sync"></context:component-scan>
 
     <bean id="dynamicDataSource" class="cn.com.systec.datasource.DynamicDataSource">
         <property name="targetDataSources">
@@ -72,6 +73,7 @@
                 <prop key="hibernate.show_sql">false</prop>
                 <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
             </props>
         </property>
     </bean>
